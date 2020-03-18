@@ -1,0 +1,860 @@
+{
+	"info": {
+		"_postman_id": "aa2bff3c-7e1b-4bd3-9977-9e7f76093383",
+		"name": "Kjer.si node",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base}}/v1/ping",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get room categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base}}/v1/rooms/categories",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"rooms",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cde95d98-fe4e-4c64-b950-5c772619ad05",
+						"exec": [
+							"pm.environment.set(\"TOKEN\", JSON.parse(responseBody).data.accessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"uid\":\"6a54d32a1sd65as1dasd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/v1/users/register",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create room",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Moja soba\",\n\t\"lat\": 46.038689, \n\t\"lng\": 14.500662,\n\t\"radius\": 500,\n\t\"category_id\": \"ANIMALS\",\n\t\"description\": \"Kratek opis sobe\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/v1/rooms",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{TOKEN}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"Moj event\",\n\t\"description\": \"Moj opis\",\n\t\"dateTime\":\"\",\n\t\"numSeats\":5,\n\t\"limitedSeats\":true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/v1/rooms/5e7266418b33328fa32e398f/events",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"rooms",
+						"5e7266418b33328fa32e398f",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get events",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{TOKEN}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/v1/rooms/5e7266418b33328fa32e398f/events",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"rooms",
+						"5e7266418b33328fa32e398f",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join room",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{TOKEN}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/v1/rooms/5e7266418b33328fa32e398f/join",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"rooms",
+						"5e7266418b33328fa32e398f",
+						"join"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get room messages",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{TOKEN}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"beforeDate\":\"2020-03-18T18:26:21.925Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/v1/rooms/5e7267a75c2b338fc13c0ffa/messages",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"rooms",
+						"5e7267a75c2b338fc13c0ffa",
+						"messages"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get room messages",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"beforeDate\":\"2020-03-18T18:26:21.925Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/rooms/5e7267a75c2b338fc13c0ffa/messages",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"rooms",
+								"5e7267a75c2b338fc13c0ffa",
+								"messages"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "465"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d1-LjPbwt7EYUiikV6SjheN3T2BdRQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 Mar 2020 18:26:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"createdAt\": \"2020-03-18T18:25:56.631Z\",\n            \"_id\": \"5e7267b45c2b338fc13c0ffb\",\n            \"roomId\": \"5e7267a75c2b338fc13c0ffa\",\n            \"text\": \"Hello\",\n            \"type\": \"TEXT\",\n            \"author\": {\n                \"_id\": \"5e70fa3feffb511cf4d90ba6\",\n                \"nickname\": \"RazmerjeReprezentanca\"\n            },\n            \"__v\": 0\n        },\n        {\n            \"createdAt\": \"2020-03-18T18:26:01.139Z\",\n            \"_id\": \"5e7267b95c2b338fc13c0ffc\",\n            \"roomId\": \"5e7267a75c2b338fc13c0ffa\",\n            \"text\": \"Kako gre\",\n            \"type\": \"TEXT\",\n            \"author\": {\n                \"_id\": \"5e70fa3feffb511cf4d90ba6\",\n                \"nickname\": \"RazmerjeReprezentanca\"\n            },\n            \"__v\": 0\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Leave room",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "[{\"description\":\"\",\"enabled\":true,\"key\":\"Authorization\",\"type\":\"text\",\"value\":\"{{TOKEN}}\"}]"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Moja soba\",\n\t\"lat\": 46.041366,\n\t\"lng\": 14.504288,\n\t\"radius\": 500,\n\t\"category_id\": \"RECREATION\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/v1/rooms/5e7267a75c2b338fc13c0ffa/leave",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"rooms",
+						"5e7267a75c2b338fc13c0ffa",
+						"leave"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Leave room",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Moja soba\",\n\t\"lat\": 46.041366,\n\t\"lng\": 14.504288,\n\t\"radius\": 500,\n\t\"category_id\": \"RECREATION\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/rooms/5e7267a75c2b338fc13c0ffa/leave",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"rooms",
+								"5e7267a75c2b338fc13c0ffa",
+								"leave"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e-xR40VVr9vhTR0b9dnDWsnu+kBpg\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 Mar 2020 18:27:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"roomId\": \"5e7267a75c2b338fc13c0ffa\"\n    }\n}"
+				},
+				{
+					"name": "Leave room",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Moja soba\",\n\t\"lat\": 46.041366,\n\t\"lng\": 14.504288,\n\t\"radius\": 500,\n\t\"category_id\": \"RECREATION\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/rooms/5e7267a75c2b338fc13c0ffa/leave",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"rooms",
+								"5e7267a75c2b338fc13c0ffa",
+								"leave"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e-xR40VVr9vhTR0b9dnDWsnu+kBpg\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 Mar 2020 18:27:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"roomId\": \"5e7267a75c2b338fc13c0ffa\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Find room in radius",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{TOKEN}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lat\": 46.068549, \n\t\"lng\": 14.561246\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/v1/map/rooms",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"map",
+						"rooms"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Find room in radius",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"lat\": 46.068549, \n\t\"lng\": 14.561246\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/map/rooms",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"map",
+								"rooms"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1768"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6e8-k0r09REFDDDe47QHmsiiBrGeoME\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 Mar 2020 18:28:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"_id\": \"5e7266418b33328fa32e398f\",\n            \"name\": \"Moja soba\",\n            \"category_id\": \"RECREATION\",\n            \"memberCount\": 1,\n            \"lat\": 46.041366,\n            \"lng\": 14.504288,\n            \"amMember\": true,\n            \"eventCount\": 0\n        },\n        {\n            \"_id\": \"5e721463e33075646f1c78ab\",\n            \"name\": \"Rekreacija\",\n            \"category_id\": \"RECREATION\",\n            \"memberCount\": 1,\n            \"lat\": 46.040598522582854,\n            \"lng\": 14.500472545623778,\n            \"description\": \"Mckdjdjdjdjdjdjjddjdjeejekekkeekwkwkeekk\",\n            \"amMember\": false,\n            \"eventCount\": 0\n        },\n        {\n            \"_id\": \"5e7214f3e33075646f1c78ad\",\n            \"name\": \"Rekreacija\",\n            \"category_id\": \"RECREATION\",\n            \"memberCount\": 1,\n            \"lat\": 46.03984004569057,\n            \"lng\": 14.500834643840788,\n            \"description\": \"Mxmdmdkkdkdkdkekdkkekdkdndkfmmdmdmdmemekekemkekejejejdjeejekekekekkeke\",\n            \"amMember\": false,\n            \"eventCount\": 0\n        },\n        {\n            \"_id\": \"5e72152ee33075646f1c78ae\",\n            \"name\": \"Živali\",\n            \"category_id\": \"ANIMALS\",\n            \"memberCount\": 1,\n            \"lat\": 46.03983981295595,\n            \"lng\": 14.500833973288536,\n            \"description\": \"Jekekekeke eke ee eneneekebejekjrjkeekrekrkrkeoekrekeklekrne\",\n            \"amMember\": false,\n            \"eventCount\": 0\n        },\n        {\n            \"_id\": \"5e721564e33075646f1c78af\",\n            \"name\": \"Sosedska pomoč\",\n            \"category_id\": \"NEIGHBOUR_ASSISTANCE\",\n            \"memberCount\": 1,\n            \"lat\": 46.03984004569057,\n            \"lng\": 14.500833302736282,\n            \"amMember\": false,\n            \"eventCount\": 0\n        },\n        {\n            \"_id\": \"5e72156be33075646f1c78b0\",\n            \"name\": \"Rekreacija\",\n            \"category_id\": \"RECREATION\",\n            \"memberCount\": 1,\n            \"lat\": 46.04019892129573,\n            \"lng\": 14.49968934059143,\n            \"description\": \"\",\n            \"amMember\": false,\n            \"eventCount\": 0\n        },\n        {\n            \"_id\": \"5e7267a75c2b338fc13c0ffa\",\n            \"name\": \"Moja soba\",\n            \"category_id\": \"ANIMALS\",\n            \"memberCount\": 1,\n            \"lat\": 46.038689,\n            \"lng\": 14.500662,\n            \"description\": \"Kratek opis sobe\",\n            \"amMember\": false,\n            \"eventCount\": 0\n        },\n        {\n            \"_id\": \"5e7214c5e33075646f1c78ac\",\n            \"name\": \"Rekreacija\",\n            \"category_id\": \"RECREATION\",\n            \"memberCount\": 1,\n            \"lat\": 46.0388858255446,\n            \"lng\": 14.500166773796082,\n            \"description\": \"Jdkdkdjelee kee eke ekw ekr rrr krnrkr dkd frbe rkr roe ror reenroenrj\",\n            \"amMember\": false,\n            \"eventCount\": 0\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get self",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/v1/users/self",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"users",
+						"self"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get self",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/users/self",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"self"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:4200"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "160"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a0-Hvf2ySPcF98JOabBIUg7T8A8Tw4\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 Mar 2020 18:28:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"role\": \"USER\",\n        \"createdAt\": \"2020-03-17T18:10:23.437Z\",\n        \"_id\": \"5e71128fa3ba63275538c5a7\",\n        \"uid\": \"6a54d32a1sd65as1dasd\",\n        \"nickname\": \"ElementZakona\",\n        \"__v\": 0\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2ce8ecfe-a652-4ac5-84c1-afab4eb1d00e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6966d0ec-ff95-46f2-98ae-3f9b5962c864",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "3b62980d-6327-473a-adaf-bd0e4669783e",
+			"key": "base",
+			"value": "http://localhost:3088",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
