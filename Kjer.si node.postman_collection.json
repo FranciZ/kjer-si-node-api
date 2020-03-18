@@ -251,6 +251,46 @@
 			"response": []
 		},
 		{
+			"name": "Join room Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{TOKEN}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firebaseToken\":\"FIREBASE TOKEN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/v1/users/self/firebaseToken",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"v1",
+						"users",
+						"self",
+						"firebaseToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get room messages",
 			"request": {
 				"method": "POST",
@@ -850,7 +890,7 @@
 	],
 	"variable": [
 		{
-			"id": "3b62980d-6327-473a-adaf-bd0e4669783e",
+			"id": "89c7bea2-c6cb-4302-8831-a967f65cc4cd",
 			"key": "base",
 			"value": "http://localhost:3088",
 			"type": "string"
