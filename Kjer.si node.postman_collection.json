@@ -251,7 +251,7 @@
 			"response": []
 		},
 		{
-			"name": "Join room Copy",
+			"name": "Update firebase token",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -890,7 +890,7 @@
 	],
 	"variable": [
 		{
-			"id": "89c7bea2-c6cb-4302-8831-a967f65cc4cd",
+			"id": "b2f5c378-7c61-4981-a61f-27845e7feb9a",
 			"key": "base",
 			"value": "http://localhost:3088",
 			"type": "string"
