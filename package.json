@@ -31,7 +31,7 @@
     "fb": "2.0.0",
     "firebase-admin": "^8.10.0",
     "gm": "1.23.1",
-    "googleapis": "28.1.0",
+    "googleapis": "39.1.0",
     "image-size": "0.6.2",
     "jsonwebtoken": "8.1.1",
     "metascraper": "3.9.3",
